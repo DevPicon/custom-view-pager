@@ -2,6 +2,7 @@ package com.devpicon.android.customviewpager;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,10 +13,13 @@ import java.util.ArrayList;
  */
 public class MainPagerAdapter extends PagerAdapter {
 
+    private static final String TAG = MainPagerAdapter.class.getSimpleName();
+
     private ArrayList<View> views = new ArrayList<>();
 
     @Override
     public int getItemPosition(Object object) {
+        Log.d(TAG, "Ingreso a getItemPosition");
         int index = views.indexOf(object);
         if (index == -1) {
             return POSITION_NONE;
@@ -26,6 +30,7 @@ public class MainPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+        Log.d(TAG, "Ingreso a instantiateItem");
         View v = views.get(position);
         container.addView(v);
         return v;
@@ -81,6 +86,7 @@ public class MainPagerAdapter extends PagerAdapter {
      * @return
      */
     public int removeView(ViewPager pager, int position) {
+        Log.d(TAG, "Ingreso a removeView");
         pager.setAdapter(null);
         views.remove(position);
         pager.setAdapter(this);
@@ -96,16 +102,20 @@ public class MainPagerAdapter extends PagerAdapter {
      * @return vista
      */
     public View getView(int position) {
+        Log.d(TAG, "Ingreso a getView");
         return views.get(position);
     }
 
     @Override
     public int getCount() {
+        Log.d(TAG, "Ingreso a getCount");
         return views.size();
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
+
+        Log.d(TAG, "Ingreso a isViewFromObject");
         return view == object;
     }
 }
